@@ -74,33 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  showWidget() {
-    if (_counter > 0) {
-      return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            FloatingActionButton(
-              onPressed: _decrementCounter,
-              child: const Icon(Icons.horizontal_rule),
-            ),
-            FloatingActionButton(
-              onPressed: _incrementCounter,
-              child: const Icon(Icons.add),
-            )
-          ],
-        ),
-      );
-    } else {
-      return
-        FloatingActionButton(
-          onPressed: _incrementCounter,
-          child: const Icon(Icons.add),
-        );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -148,9 +121,26 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-        floatingActionButtonLocation: _counter > 0 ?
-                FloatingActionButtonLocation.centerDocked : FloatingActionButtonLocation.endDocked,
-        floatingActionButton: showWidget()
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Visibility(
+                  visible: _counter > 0 ? true : false,
+                  child: FloatingActionButton(
+                    onPressed: _decrementCounter,
+                    child: const Icon(Icons.horizontal_rule),
+                  ),
+              ),
+              FloatingActionButton(
+                onPressed: _incrementCounter,
+                child: const Icon(Icons.add),
+              )
+            ],
+          ),
+        ),
     );
   }
 }
