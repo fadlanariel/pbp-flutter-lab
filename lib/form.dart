@@ -2,21 +2,13 @@ import 'package:counter_7/main.dart';
 import 'package:counter_7/data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'mybudget.dart';
 
 class MyFormPage extends StatefulWidget {
   const MyFormPage({super.key});
 
   @override
   State<MyFormPage> createState() => _MyFormPageState();
-}
-
-class MyBudget {
-  String judul = "";
-  int nominal = 0;
-  String jenis = "";
-
-  MyBudget(this.judul, this.nominal, this.jenis);
-
 }
 
 class _MyFormPageState extends State<MyFormPage> {
@@ -92,6 +84,11 @@ class _MyFormPageState extends State<MyFormPage> {
                       ),
                     ),
                     // Menambahkan behavior saat data disimpan
+                    onChanged: (String? value) {
+                      setState(() {
+                        _judul = value!;
+                      });
+                    },
                     onSaved: (String? value) {
                       setState(() {
                         _judul = value!;
@@ -121,6 +118,11 @@ class _MyFormPageState extends State<MyFormPage> {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                     ),
+                    onChanged: (String? value) {
+                      setState(() {
+                        _nominal = int.parse(value!);
+                      });
+                    },
                     // Menambahkan behavior saat data disimpan
                     onSaved: (String? value) {
                       setState(() {
@@ -179,6 +181,37 @@ class _MyFormPageState extends State<MyFormPage> {
                       if (_formKey.currentState!.validate()) {
                         MyBudget budgetItem = MyBudget(_judul, _nominal, _jenis);
                         listMyBudget.add(budgetItem);
+                        MyBudget.listBudget.add(budgetItem);
+                        _formKey.currentState?.reset();
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return Dialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              elevation: 15,
+                              child: ListView(
+                                padding: const EdgeInsets.only(top : 20, bottom: 20),
+                                shrinkWrap: true,
+                                children: <Widget>[
+                                  const Center(
+                                    child: Text(
+                                      'Berhasil menambahkan budget',
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Kembali'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        );
                       }
                     },
                     child: const Text(

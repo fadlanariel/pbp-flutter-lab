@@ -1,6 +1,8 @@
 import 'package:counter_7/main.dart';
 import 'package:counter_7/form.dart';
+import 'package:counter_7/mybudget.dart';
 import 'package:flutter/material.dart';
+
 
 class MyDataPage extends StatefulWidget {
   const MyDataPage({super.key});
@@ -10,6 +12,8 @@ class MyDataPage extends StatefulWidget {
 }
 
 class _MyDataPageState extends State<MyDataPage> {
+  List<String> litems = ["1","2","Third","4"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +58,41 @@ class _MyDataPageState extends State<MyDataPage> {
           ],
         ),
       ),
-      body: Text(""),
+      body: Center(
+          child: ListView.builder(
+              itemCount: MyBudget.listBudget.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  child: Card(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        ListTile(
+                          title: Text(MyBudget.listBudget[index].judul,
+                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16, right: 10, bottom: 8),
+                          child : Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                              Text(MyBudget.listBudget[index].nominal.toString(),
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                              Text(MyBudget.listBudget[index].jenis,
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+          ),
+        ),
     );
   }
 }
