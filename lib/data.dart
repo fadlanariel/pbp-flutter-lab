@@ -2,8 +2,6 @@ import 'package:counter_7/main.dart';
 import 'package:counter_7/form.dart';
 import 'package:flutter/material.dart';
 
-import 'form.dart';
-
 class MyDataPage extends StatefulWidget {
   const MyDataPage({super.key});
 
