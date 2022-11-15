@@ -99,10 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: const Text('counter_7'),
               onTap: () {
                 // Route menu ke halaman utama
-                Navigator.pop(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage()),
-                );
+                Navigator.pop(context);
               },
             ),
             ListTile(
