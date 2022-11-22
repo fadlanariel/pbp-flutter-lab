@@ -1,6 +1,7 @@
 import 'package:counter_7/main.dart';
 import 'package:counter_7/page/form.dart';
 import 'package:counter_7/page/data.dart';
+import 'package:counter_7/page/detail.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -111,7 +112,11 @@ class _MyWatchlistPageState extends State<MyWatchlistPage> {
                     itemCount: snapshot.data!.length,
                     itemBuilder: (_, index) => InkWell(
                       onTap: () {
-                        print("Test");
+                        // Route menu ke halaman form
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailPage(data: snapshot.data[index])));
                       },
                       child: Container(
                         margin: const EdgeInsets.symmetric(
