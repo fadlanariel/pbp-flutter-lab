@@ -3,9 +3,7 @@ import 'package:counter_7/page/form.dart';
 import 'package:counter_7/page/data.dart';
 import 'package:counter_7/page/detail.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:counter_7/model/mywatchlist.dart';
+import 'package:counter_7/method/fetchWatchlist.dart';
 
 class MyWatchlistPage extends StatefulWidget {
   const MyWatchlistPage({super.key});
@@ -15,29 +13,6 @@ class MyWatchlistPage extends StatefulWidget {
 }
 
 class _MyWatchlistPageState extends State<MyWatchlistPage> {
-  Future<List<Mywatchlist>> fetchWatchlist() async {
-    var url = Uri.parse('https://tugasduapbp.herokuapp.com/mywatchlist/json/');
-    var response = await http.get(
-      url,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    );
-
-    // melakukan decode response menjadi bentuk json
-    var data = jsonDecode(utf8.decode(response.bodyBytes));
-
-    // melakukan konversi data json menjadi object ToDo
-    List<Mywatchlist> watchlist = [];
-    for (var d in data) {
-      if (d != null) {
-        watchlist.add(Mywatchlist.fromJson(d));
-      }
-    }
-
-    return watchlist;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,21 +91,22 @@ class _MyWatchlistPageState extends State<MyWatchlistPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => DetailPage(data: snapshot.data[index])));
+                                builder: (context) =>
+                                    DetailPage(data: snapshot.data[index])));
                       },
                       child: Container(
                         margin: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 12),
-                        padding: const EdgeInsets.all(20.0),
+                            horizontal: 12, vertical: 10),
+                        padding: const EdgeInsets.all(14.0),
                         decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15.0),
-                            border: Border.all(
-                                  color: snapshot.data![index].fields.watched
-                                      ? Colors.green
-                                      : Colors.redAccent,
-                                  ),
-                            ),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15.0),
+                          border: Border.all(
+                            color: snapshot.data![index].fields.watched
+                                ? Colors.green
+                                : Colors.redAccent,
+                          ),
+                        ),
                         child: Card(
                           elevation: 0,
                           child: Column(
@@ -141,15 +117,18 @@ class _MyWatchlistPageState extends State<MyWatchlistPage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    snapshot.data![index].fields.title,
-                                    style: TextStyle(
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold,
-                                      color:
-                                          snapshot.data![index].fields.watched
-                                              ? Colors.green
-                                              : Colors.redAccent,
+                                  Expanded(
+                                    flex: 2,
+                                    child: Text(
+                                      snapshot.data![index].fields.title,
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold,
+                                        color:
+                                            snapshot.data![index].fields.watched
+                                                ? Colors.green
+                                                : Colors.redAccent,
+                                      ),
                                     ),
                                   ),
                                   Checkbox(

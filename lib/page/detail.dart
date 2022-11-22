@@ -13,166 +13,166 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('My Watch List'),
-        ),
-        // Menambahkan drawer menu
-        drawer: Drawer(
-          child: Column(
-            children: [
-              // Menambahkan clickable menu
-              ListTile(
-                title: const Text('counter_7'),
-                onTap: () {
-                  // Route menu ke halaman utama
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyHomePage()),
-                  );
-                },
-              ),
-              ListTile(
-                title: const Text('Tambah Budget'),
-                onTap: () {
-                  // Route menu ke halaman form
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyFormPage()),
-                  );
-                },
-              ),
-              ListTile(
-                title: const Text('Data Budget'),
-                onTap: () {
-                  // Route menu ke halaman form
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const MyDataPage()));
-                },
-              ),
-              ListTile(
-                title: const Text('My Watch List'),
-                onTap: () {
-                  // Route menu ke halaman form
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const MyWatchlistPage()));
-                },
-              ),
-            ],
-          ),
-        ),
-        body: Column(
+      appBar: AppBar(
+        title: const Text('Detail'),
+      ),
+      // Menambahkan drawer menu
+      drawer: Drawer(
+        child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: Text(
-                  data.fields.title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 26,
-                  ),
-                ),
-              ),
+            // Menambahkan clickable menu
+            ListTile(
+              title: const Text('counter_7'),
+              onTap: () {
+                // Route menu ke halaman utama
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage()),
+                );
+              },
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 4, left: 8, right: 8, bottom: 4),
-              child: Row(
-                children: [
-                  const Text(
-                    "Release Date: ",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                  ),
-                  Text(
-                    data.fields.releaseDate
-                        .toString()
-                        .replaceAll("00:00:00.000", ""),
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                ],
-              ),
+            ListTile(
+              title: const Text('Tambah Budget'),
+              onTap: () {
+                // Route menu ke halaman form
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyFormPage()),
+                );
+              },
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 4, left: 8, right: 8, bottom: 4),
-              child: Row(
-                children: [
-                  const Text(
-                    "Rating: ",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                  ),
-                  Text(
-                    '${data.fields.rating} / 5',
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                ],
-              ),
+            ListTile(
+              title: const Text('Data Budget'),
+              onTap: () {
+                // Route menu ke halaman form
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MyDataPage()));
+              },
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 4, left: 8, right: 8, bottom: 4),
-              child: Row(
-                children: [
-                  const Text(
-                    "Status: ",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                  ),
-                  Text(
-                    data.fields.watched ? "Watched" : "Not Watched",
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 4, left: 8, right: 8, bottom: 4),
-              child: Row(
-                children: const [
-                  Text(
-                    "Review: ",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 8, right: 8, bottom: 4),
-              child: Row(
-                children: [
-                  Text(
-                    data.fields.review,
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                ],
-              ),
-            ),
-
-            const Flexible(fit: FlexFit.tight, child: SizedBox()),
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 8, left: 8, right: 8, bottom: 8),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  minimumSize: const Size.fromHeight(40.0),
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text(
-                  "Back",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
+            ListTile(
+              title: const Text('My Watch List'),
+              onTap: () {
+                // Route menu ke halaman form
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MyWatchlistPage()));
+              },
             ),
           ],
         ),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(
+                data.fields.title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 26,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
+            child: Row(
+              children: [
+                const Text(
+                  "Release Date: ",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                ),
+                Text(
+                  data.fields.releaseDate.toString().substring(0, 10),
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
+            child: Row(
+              children: [
+                const Text(
+                  "Rating: ",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                ),
+                Text(
+                  '${data.fields.rating} / 5',
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
+            child: Row(
+              children: [
+                const Text(
+                  "Status: ",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                ),
+                Text(
+                  data.fields.watched ? "Watched" : "Not Watched",
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
+            child: Row(
+              children: const [
+                Text(
+                  "Review: ",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8, right: 8, bottom: 4),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Text(
+                    data.fields.review,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Flexible(fit: FlexFit.tight, child: SizedBox()),
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 8),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.blue,
+                minimumSize: const Size.fromHeight(40.0),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                "Back",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
