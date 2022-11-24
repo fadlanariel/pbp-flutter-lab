@@ -3,7 +3,7 @@ import 'package:counter_7/page/form.dart';
 import 'package:counter_7/page/data.dart';
 import 'package:counter_7/page/detail.dart';
 import 'package:flutter/material.dart';
-import 'package:counter_7/method/fetchWatchlist.dart';
+import 'package:counter_7/model/mywatchlist.dart';
 
 class MyWatchlistPage extends StatefulWidget {
   const MyWatchlistPage({super.key});
